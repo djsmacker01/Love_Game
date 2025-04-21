@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hearts & Truths</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff69b4">
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #c71585;
+      margin-bottom: 20px;
+    }
+    .card {
+      width: 90%;
+      max-width: 400px;
+      padding: 30px;
+      text-align: center;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      color: #333;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hearts & Truths</h1>
+  <div class="card" id="questionCard">Tap to get a question</div>
+  <button class="btn" onclick="showQuestion()">Next Question</button>
+
+  <script>
+    const questions = [
+      // Cute & Flirty
+      "What's your favorite pet name I call you?",
+      "Would you rather cuddle all day or kiss all night?",
+      "What’s my best feature, physically and personality-wise?",
+      "What song reminds you of me?",
+      "What's the first thing you noticed about me?",
+      "Do I make you feel safe?",
+      "What would we be like as parents?",
+      "Do you ever brag about me?",
+
+      // Deep & Romantic
+      "What moment made you feel closest to me?",
+      "What scares you the most about losing me?",
+      "How has our relationship changed you?",
+      "What’s one promise you’d make and never break?",
+      "When do you feel most loved by me?",
+      "What does 'home' mean to you now?",
+      "What's something I do that you think I don't notice?",
+      "What do you want our future to look like?",
+
+      // Spicy & Bold
+      "What's your biggest turn-on when we're together?",
+      "Where’s one place you’ve fantasized about us getting intimate?",
+      "What’s one thing you’ve wanted to try in bed but haven’t said?",
+      "How do you want me to surprise you next time?",
+      "What’s your favorite make-out memory with me?",
+      "How do I drive you crazy—in a good way?",
+      "Truth or dare: Show me how you'd seduce me.",
+      "Describe a steamy scene with us in 3 words only."
+    ];
+
+    function showQuestion() {
+      const randomIndex = Math.floor(Math.random() * questions.length);
+      document.getElementById("questionCard").textContent = questions[randomIndex];
+    }
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(error => console.log('Service Worker registration failed:', error));
+    }
+  </script>
+</body>
+</html>
